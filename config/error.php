@@ -20,4 +20,5 @@ return [
   'GROUP_NOT_FOUND' => array(1017, '分组无法找到'),
   'DENY_ALLOW_VIEW_THIS_GROUP' => array(1018, '无法查看此分组'),
   'CANNOT_RE_FOLLOW' => array(1019, '不能重复关注喔~'),
+  'EMOJI_GROUP_IS_REQUIRED' => array(1020, '您必须输入表情包组id'),
 ];

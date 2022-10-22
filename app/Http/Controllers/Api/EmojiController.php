@@ -16,6 +16,9 @@ class EmojiController extends Controller
         if (!is_array($request->input('emoji_list'))) {
             throw new ApiErrorException('EMOJI_LIST_NOT_A_LIST');
         }
+        if (!$request->input('group_id') || $request->input('group_id') < 0) {
+            throw new ApiErrorException('EMOJI_GROUP_IS_REQUIRED');
+        } 
         $list = array_unique($request->input('emoji_list'));
         $data = [];
         foreach ($list as $item) {
@@ -36,7 +39,7 @@ class EmojiController extends Controller
     {
         $cacheList = Redis::get('emoji:list');
         if (!$cacheList) {
-            $data = DB::table('emoji')->select('id', 'code', 'image_url')->get();
+            $data = DB::table('emoji')->select('id', 'code', 'image_url', 'group_id')->get();
             Redis::set('emoji:list', serialize($data));
             return successJson($data);
         } else {
