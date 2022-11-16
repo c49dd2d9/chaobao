@@ -13,8 +13,9 @@ class SockpuppetController extends Controller
     {
         $rules = [
             'name' => 'required|max:20|unique:sockpuppet',
+            'type' => 'required'
         ];  
-        validateParams($request->only('name'), $rules); 
+        validateParams($request->only('name','type'), $rules); 
         $sockpuppet = new Sockpuppet;
         $sockpuppet->name = e($request->input('name'));
         $sockpuppet->avatar_url = nullSecurity($request->input('avatar_url'));
